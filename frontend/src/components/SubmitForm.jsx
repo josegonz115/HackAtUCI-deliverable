@@ -34,7 +34,7 @@ const SubmitForm = ({ onUpdateQuotes }) => {
     // {/* action="/api/quote" method="post"  | will not work due to using event.preventDefault() */}
     // <form className=" flex flex-col items-center gap-2 mt-4 w-full" onSubmit={handleSubmit}>
     return (
-        <div className="bg-indigo-300 border border-indigo-400 mx-auto w-96 min-w-max py-4 px-6 rounded-lg shadow-lg mb-8">
+        <div className="bg-indigo-300 border border-indigo-400 mx-auto w-80 sm:w-80 md:w-96 lg:w-[600px] min-w-fit  py-4 px-6 rounded-lg shadow-lg mb-8">
         <h2 className="text-2xl font-bold text-center w-full">Submit a quote</h2>
         <form className="flex flex-col items-center gap-2 mt-4 w-full" onSubmit={handleSubmit}>
                 <div className="mb-5 w-full">

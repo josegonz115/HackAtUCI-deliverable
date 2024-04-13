@@ -21,7 +21,7 @@ const Quotes = ({ updateQuotes }) => {
     return (
         <>
             <h2 className="text-2xl font-bold text-center m-4">Previous Quotes</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start">
                 {quotes.length > 0 ? (
                     quotes.map((quote, i) => (
                         <Quote
