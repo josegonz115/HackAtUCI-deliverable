@@ -52,5 +52,5 @@ def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
 def get_quotes_up_to_max(maxage: str):
     max_age_date = datetime.fromisoformat(maxage)
     quotes = database.get("quotes", [])
-    filtered_quotes = [quote for quote in quotes if datetime.fromisoformat(quote['time']) <= max_age_date]
+    filtered_quotes = [quote for quote in quotes if datetime.fromisoformat(quote['time']) >= max_age_date]
     return filtered_quotes
