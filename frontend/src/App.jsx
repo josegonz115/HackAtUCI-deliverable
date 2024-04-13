@@ -1,25 +1,21 @@
 import "./App.css";
+import { useState } from "react";
 import Quotes from "./components/Quotes";
+import SubmitForm from "./components/SubmitForm";
 
 function App() {
+	const [updateQuotes, setUpdateQuotes] = useState(false);
+	const handleUpdateQuotes = () => {
+		setUpdateQuotes(prevState => !prevState); // functional update
+	};
+
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
+
 			<h1>Hack at UCI Tech Deliverable</h1>
-
-			<h2>Submit a quote</h2>
-			{/* TODO: implement custom form submission logic to not refresh the page */}
-			<form action="/api/quote" method="post">
-				<label htmlFor="input-name">Name</label>
-				<input type="text" name="name" id="input-name" required />
-				<label htmlFor="input-message">Quote</label>
-				<input type="text" name="message" id="input-message" required />
-				<button type="submit">Submit</button>
-			</form>
-
-			<h2>Previous Quotes</h2>
-			{/* TODO: Display the actual quotes from the database */}
-			<Quotes />
+			<SubmitForm onUpdateQuotes={handleUpdateQuotes} />
+			<Quotes updateQuotes={updateQuotes}/>
 		</div>
 	);
 }
