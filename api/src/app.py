@@ -3,6 +3,7 @@ from typing import TypedDict
 
 from fastapi import FastAPI, Form, status
 from fastapi.responses import RedirectResponse
+from fastapi import HTTPException
 
 from services.database import JSONDatabase
 
@@ -33,18 +34,19 @@ def on_shutdown() -> None:
 
 
 @app.post("/quote")
-def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
+def post_message(name: str = Form(), message: str = Form()) -> Quote:
     """
     Process a user submitting a new quote.
     You should not modify this function except for the return value.
     """
     now = datetime.now().replace(microsecond=0)
-
     quote = Quote(name=name, message=message, time=now.isoformat())
-    database["quotes"].append(quote)
-
-    # You may modify the return value as needed to support other functionality
-    return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+    try:
+        database["quotes"].append(quote)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    return quote
 
 
 # API route with a query parameter to retrieve quotes based on max age
